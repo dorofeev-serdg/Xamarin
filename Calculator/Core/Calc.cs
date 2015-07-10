@@ -4,9 +4,9 @@ namespace Core
 {
 	public class Calc
 	{
-		private double result;		// variable to contain the result of calculation
-		private double argument;	// variable to contain the entered argument
-		private uint    dotFlag;	// variable to contain a dot-flag
+		private double  result;		// variable to contain the result of calculation
+		private double  argument;	// variable to contain the currently entered argument
+		private int     dotFlag;	// variable to contain a dot-flag
 		private Actions action;     // variable to containt current action
 
 		public double Result
@@ -19,7 +19,7 @@ namespace Core
 			get { return argument; }
 		}
 
-		public uint Dot 
+		public int Dot 
 		{
 			get { return dotFlag; }
 		}
@@ -28,14 +28,14 @@ namespace Core
 		{
 			result = 0.0;
 			argument = 0.0;
-			dotFlag = 0;
+			dotFlag = -1;			// -1 means than no decimal part is used
+			action = Actions.Unknown;
 		}
 
 		public enum Actions
 		{
 			Unknown,
 
-			Result,
 			Plus,
 			Minus,
 			Mul,
@@ -44,64 +44,84 @@ namespace Core
 
 		public void PressDot()
 		{
-			dotFlag = dotFlag == 0 ? 1 : dotFlag;
+			dotFlag = dotFlag < 0 ? 0 : dotFlag;
 		}
 
 		public void PressNumber(int number)
 		{
-			argument = dotFlag == 0 ? argument * 10 + number : argument + (double)number / (10 ^ dotFlag);
-			dotFlag = dotFlag == 0 ? 0 : dotFlag + 1; 
+			dotFlag = dotFlag < 0 ? -1 : dotFlag + 1; 
+			argument = dotFlag < 0 ? argument * 10 + number : argument + (double)number / Math.Pow(10, dotFlag);
 		}
 
 		public void PressClear()
 		{
 			argument = 0.0;
 			result = 0.0;
-			dotFlag = 0;
+			dotFlag = -1;
 			action = Actions.Unknown;
 		}
 
 		public void PressBackspace()
 		{
-			argument = dotFlag == 0 ? Math.Floor (argument / 10) : Math.Round (argument, -((int)dotFlag + 1));
-			dotFlag = dotFlag == 0 ? 0 : dotFlag - 1; 
+			dotFlag = dotFlag < 0 ? -1 : dotFlag - 1; 
+			argument = dotFlag < 0 ? Math.Floor (argument / 10) : RoundDown(argument, dotFlag);
 		}
 
 		public void PressAction(Actions act)
 		{
-			if (act != Actions.Result) {
-				action = act;
-			} else {
-				try
-				{
-					switch (action) {
-						
-						case Actions.Div:
-							result = result / argument;
-							break;
-						case Actions.Plus:
-							result = result + argument;
-							break;
-						case Actions.Mul:
-							result = result * argument;
-							break;
-						case Actions.Minus:
-							result = result - argument;
-							break;
-					}
-				}
-				catch (Exception e)
-				{
-					// TODO: implement logging
-					result = 0.0;
-					argument = 0.0;
-					dotFlag = 0;
-				}
+			
+			switch (action) {
+				case Actions.Div:
+					result = result / argument;
+					break;
+				case Actions.Plus:
+					result = result + argument;
+					break;
+				case Actions.Mul:
+					result = result * argument;
+					break;
+				case Actions.Minus:
+					result = result - argument;
+					break;
+				case Actions.Unknown:
+					result = argument;
+						break;
 			}
 
 			argument = 0.0;
-			dotFlag = 0;
+			action = act;
+			dotFlag = -1;
 		}
+
+		public void PressResult()
+		{
+			PressAction (action);
+		}
+
+		#region Round function
+
+		private enum RoundingDirection { Up, Down }
+		private delegate double RoundingFunction(double value);
+
+		private static double RoundDown(double value, int precision)
+		{
+			return Round(value, precision, RoundingDirection.Down);
+		}
+
+		private static double Round(double value, int precision, 
+			RoundingDirection roundingDirection)
+		{
+			RoundingFunction roundingFunction;
+			if (roundingDirection == RoundingDirection.Up)
+				roundingFunction = Math.Ceiling;
+			else
+				roundingFunction = Math.Floor;
+				value *= Math.Pow(10, precision);
+				value = roundingFunction(value);
+				return value * Math.Pow(10, -1 * precision);
+		}
+
+		#endregion
 	}
 }
 

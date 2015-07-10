@@ -83,7 +83,7 @@ namespace Calculator
 			actionMinus.Click  += (object sender, EventArgs e) => { ActionX_Click(Calc.Actions.Minus);};
 			actionMul.Click    += (object sender, EventArgs e) => { ActionX_Click(Calc.Actions.Mul);};
 			actionDiv.Click    += (object sender, EventArgs e) => { ActionX_Click(Calc.Actions.Div);};
-			actionResult.Click += (object sender, EventArgs e) => { ActionX_Click(Calc.Actions.Result);};
+			actionResult.Click += (object sender, EventArgs e) => { Result_Click();};
 
 			clear.Click += (object sender, EventArgs e) => {
 				PressClear ();
@@ -102,35 +102,56 @@ namespace Calculator
 		{
 			calc.PressNumber(number);
 			Console.WriteLine (String.Format("Press number {0}", number));
-			screen.Text = calc.Argument.ToString("F" + calc.Dot.ToString());
+			screen.Text = calc.Argument.ToString("F" + ( calc.Dot < 0 ? "0" : calc.Dot.ToString()));
 		}
 
 		private void ActionX_Click(Calc.Actions action)
 		{
+			try
+			{
 			calc.PressAction (action);
+			}
+			catch {
+				screen.Text = "Error!";
+				calc.PressClear ();
+				return;
+			}
 			Console.WriteLine (String.Format("Press action {0}", action));
-			screen.Text = calc.Result.ToString ( "F" + calc.Dot.ToString());
+			screen.Text = calc.Result.ToString ();
+		}
+
+		private void Result_Click()
+		{
+			calc.PressResult ();
+			Console.WriteLine ("Press result");
+			try
+			{
+				screen.Text = calc.Result.ToString ();
+			}
+			catch {
+				screen.Text = "Error!";
+				calc.PressClear ();
+			}
 		}
 
 		private void PressDot()
 		{
 			calc.PressDot ();
 			Console.WriteLine ("Press dot");
-			screen.Text = calc.Argument.ToString ("F" + calc.Dot.ToString());
 		}
 
 		private void PressClear()
 		{
 			calc.PressClear ();
 			Console.WriteLine ("Press clear");
-			screen.Text = calc.Argument.ToString ("F" + calc.Dot.ToString());
+			screen.Text = calc.Argument.ToString ();
 		}
 
 		private void PressBackspace()
 		{
 			calc.PressBackspace ();
 			Console.WriteLine ("Press backspace");
-			screen.Text = calc.Argument.ToString ("F" + calc.Dot.ToString());
+			screen.Text = calc.Argument.ToString ("F" + ( calc.Dot < 0 ? "0" : calc.Dot.ToString()));
 		}
 	}
 }

@@ -1,10 +1,22 @@
-﻿<Properties StartupItem="Calculator\Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (Lollipop) Updated" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core\Calc.cs">
+﻿<Properties StartupItem="iOS/iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/AppDelegate.cs">
     <Files>
-      <File FileName="Calculator\MainActivity.cs" Line="1" Column="1" />
-      <File FileName="Core\Calc.cs" Line="94" Column="19" />
+      <File FileName="iOS/AppDelegate.cs" Line="22" Column="8" />
+      <File FileName="iOS/CalcViewController.cs" Line="11" Column="3" />
+      <File FileName="../../../../Downloads/ButtonEventDemo/AppDelegate.cs" Line="17" Column="9" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Calculator" expanded="True">
+            <Node name="iOS" expanded="True">
+              <Node name="AppDelegate.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

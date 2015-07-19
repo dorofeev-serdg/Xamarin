@@ -15,15 +15,19 @@ namespace iOS
 			set;
 		}
 
-		CalcViewController viewController;
+		//CalcController calcController;
+		CalcViewController calcViewController;
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// create a new window instance based on the screen size
 			Window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			viewController = new CalcViewController ();
-			Window.RootViewController = viewController;
+			//calcController = new CalcController ();
+			//Window.RootViewController = calcController;
+
+			calcViewController = new CalcViewController ();
+			Window.RootViewController = calcViewController;
 
 			// make the window visible
 			Window.MakeKeyAndVisible ();

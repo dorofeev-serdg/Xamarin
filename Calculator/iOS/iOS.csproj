@@ -70,6 +70,8 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Controllers\CalcViewController.xib" />
+    <InterfaceDefinition Include="Controllers\CalcPortView.xib" />
+    <InterfaceDefinition Include="Controllers\CalcLandView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -81,6 +83,19 @@
     <Compile Include="Controllers\CalcViewController.cs" />
     <Compile Include="Controllers\CalcViewController.designer.cs">
       <DependentUpon>CalcViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalcController.cs" />
+    <Compile Include="Controllers\CalcLandView.xib.cs">
+      <DependentUpon>CalcLandView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalcPortView.xib.cs">
+      <DependentUpon>CalcPortView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalcPortView.xib.designer.cs">
+      <DependentUpon>CalcPortView.xib.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalcLandView.xib.designer.cs">
+      <DependentUpon>CalcLandView.xib.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

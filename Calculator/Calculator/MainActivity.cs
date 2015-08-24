@@ -11,7 +11,7 @@ using Core;
 
 namespace Calculator
 {
-	[Activity (Label = "Calculator", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Calculator", MainLauncher = true, Icon = "@drawable/calc")]
 	public class MainActivity : Activity
 	{
 		Calc calc;
@@ -68,6 +68,19 @@ namespace Calculator
 			backspace = FindViewById<Button> (Resource.Id.ActionBackspace);
 			clear = FindViewById<Button> (Resource.Id.ActionClear);
 
+			if (bundle != null) {
+				// Restore calc state
+				Console.Write("Restore calc state");
+				double calcResult = bundle.GetDouble ("Result");
+				double calcArgument = bundle.GetDouble ("Argument");
+				int calcDot = bundle.GetInt ("Dot");
+				int calcAction = bundle.GetInt ("Action");
+				string digits = bundle.GetString ("Digits");
+
+				calc = new Calc (calcResult, calcArgument, calcDot, calcAction);
+				screen.Text = digits;
+			}
+
 			number0.Click += (object sender, EventArgs e) => { NumberX_Click(0); };
 			number1.Click += (object sender, EventArgs e) => { NumberX_Click(1); };
 			number2.Click += (object sender, EventArgs e) => { NumberX_Click(2); };
@@ -98,6 +111,19 @@ namespace Calculator
 			};
 		}
 
+		protected override void OnSaveInstanceState(Bundle outState)
+		{
+			Console.WriteLine ("Save calc state");
+			outState.PutDouble ("Result", calc.Result);
+			outState.PutDouble ("Argument", calc.Argument);
+			outState.PutInt ("Dot", calc.Dot);
+			outState.PutInt ("Action", (int)calc.Action);
+			outState.PutString ("Digits", screen.Text);
+
+			// always call the base implementation!
+			base.OnSaveInstanceState (outState);
+		}
+
 		private void NumberX_Click (int number)
 		{
 			calc.PressNumber(number);
@@ -111,13 +137,26 @@ namespace Calculator
 			{
 			calc.PressAction (action);
 			}
-			catch {
-				screen.Text = "Error!";
+			catch (DivideByZeroException e) {
+				screen.Text = GetResource().GetString(Resource.String.error);
+				calc.PressClear ();
+				return;
+			}
+			catch (Exception e){
+				
+				screen.Text = GetResource().GetString(Resource.String.error);
 				calc.PressClear ();
 				return;
 			}
 			Console.WriteLine (String.Format("Press action {0}", action));
 			screen.Text = calc.Result.ToString ();
+		}
+
+		private Android.Content.Res.Resources GetResource()
+		{
+			Context context = this;
+			Android.Content.Res.Resources res = context.Resources;
+			return res;
 		}
 
 		private void Result_Click()
@@ -129,7 +168,7 @@ namespace Calculator
 				screen.Text = calc.Result.ToString ();
 			}
 			catch {
-				screen.Text = "Error!";
+				screen.Text = GetResource().GetString(Resource.String.error);
 				calc.PressClear ();
 			}
 		}

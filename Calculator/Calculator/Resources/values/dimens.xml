@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<dimen name="textView_Heigth">75dp</dimen>
+	<dimen name="portret_Button_Width">90dp</dimen>
+	<dimen name="portret_Button_Heigth">105dp</dimen>
+	<dimen name="portret_ButtonAction_Heigth">70dp</dimen>
+</resources>

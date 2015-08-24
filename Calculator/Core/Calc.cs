@@ -24,12 +24,25 @@ namespace Core
 			get { return dotFlag; }
 		}
 
+		public Core.Calc.Actions Action
+		{
+			get { return action; }
+		}
+
 		public Calc ()
 		{
 			result = 0.0;
 			argument = 0.0;
 			dotFlag = -1;			// -1 means than no decimal part is used
 			action = Actions.Unknown;
+		}
+
+		public Calc(double result, double argument, int dotFlag, int action)
+		{
+			this.result = result;
+			this.argument = argument;
+			this.dotFlag = dotFlag;
+			this.action = (Core.Calc.Actions)action;
 		}
 
 		public enum Actions

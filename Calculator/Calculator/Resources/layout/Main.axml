@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="20px"
+    android:minWidth="20px"
+    android:id="@+id/root_layout">
+    <TextView
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textView_Heigth"
+        android:id="@+id/digits"
+        android:background="@android:color/darker_gray"
+        android:singleLine="true"
+        android:gravity="right"
+        android:textSize="60sp" />
+    <TableLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="80dp">
+        <TableRow>
+            <TableLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableLayout1">
+                <TableRow>
+                    <Button
+                        android:text="1"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number1" />
+                    <Button
+                        android:text="2"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number2" />
+                    <Button
+                        android:text="3"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number3" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="4"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number4" />
+                    <Button
+                        android:text="5"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number5" />
+                    <Button
+                        android:text="6"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number6" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="7"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number7" />
+                    <Button
+                        android:text="8"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number8" />
+                    <Button
+                        android:text="9"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number9" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="."
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Dot"
+                        android:layout_marginRight="0.0dp" />
+                    <Button
+                        android:text="0"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/Number0" />
+                    <Button
+                        android:text="="
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_Button_Heigth"
+                        android:id="@+id/ActionResult" />
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableLayout1"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="15dp">
+                <TableRow>
+                    <Button
+                        android:text="CE"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionClear" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="C"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionBackspace" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="+"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionPlus" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="-"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionMinus" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="*"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionMul" />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:text="/"
+                        android:layout_width="@dimen/portret_Button_Width"
+                        android:layout_height="@dimen/portret_ButtonAction_Heigth"
+                        android:id="@+id/ActionDiv" />
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

@@ -1,0 +1,29 @@
+﻿<Properties StartupItem="Calculator\Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Calculator\MainActivity.cs" Line="34" Column="28" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Calculator" expanded="True">
+            <Node name="Droid" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="d:\Progs\Xamarin\Android\Calculator\Core\Calc.cs" line="72" column="1" />
+      <Breakpoint file="d:\Progs\Xamarin\Android\Calculator\Core\Calc.cs" line="66" column="1" />
+      <Breakpoint file="d:\Progs\Xamarin\Android\Calculator\Core\Calc.cs" line="52" column="1" />
+      <Breakpoint file="/Users/admin/Documents/_Projects/Xamarin/Calculator/iOS/Controllers/CalcController.cs" line="163" column="1" />
+      <Breakpoint file="/Users/admin/Documents/_Projects/Xamarin/Calculator/iOS/Controllers/CalcController.cs" line="143" column="1" />
+      <Breakpoint file="/Users/admin/Documents/_Projects/Xamarin/Calculator/iOS/Controllers/CalcController.cs" line="92" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Droid AndroidDesignerPreferredDevice="Nexus 4" AndroidDeviceId-Debug="10.71.34.101:5555" />
+</Properties>

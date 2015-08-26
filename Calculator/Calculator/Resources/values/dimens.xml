@@ -4,4 +4,8 @@
 	<dimen name="portret_Button_Width">90dp</dimen>
 	<dimen name="portret_Button_Heigth">105dp</dimen>
 	<dimen name="portret_ButtonAction_Heigth">70dp</dimen>
+	<dimen name="land_Button_Width">120dp</dimen>
+	<dimen name="land_Button_Heigth">50dp</dimen>
+	<dimen name="land_ButtonAction_Heigth">67dp</dimen>
+	<dimen name="land_ButtonAction_Heigth_min">66dp</dimen>
 </resources>

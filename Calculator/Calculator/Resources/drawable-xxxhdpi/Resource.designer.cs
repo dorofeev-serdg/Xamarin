@@ -44,29 +44,8 @@ namespace Calculator
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f040006
-			public const int land_ButtonAction_Heigth = 2130968582;
-			
-			// aapt resource value: 0x7f040007
-			public const int land_ButtonAction_Heigth_min = 2130968583;
-			
-			// aapt resource value: 0x7f040005
-			public const int land_Button_Heigth = 2130968581;
-			
-			// aapt resource value: 0x7f040004
-			public const int land_Button_Width = 2130968580;
-			
-			// aapt resource value: 0x7f040003
-			public const int portret_ButtonAction_Heigth = 2130968579;
-			
-			// aapt resource value: 0x7f040002
-			public const int portret_Button_Heigth = 2130968578;
-			
-			// aapt resource value: 0x7f040001
-			public const int portret_Button_Width = 2130968577;
-			
 			// aapt resource value: 0x7f040000
-			public const int textView_Heigth = 2130968576;
+			public const int button_height = 2130968576;
 			
 			static Dimension()
 			{
@@ -82,10 +61,7 @@ namespace Calculator
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int calc = 2130837504;
-			
-			// aapt resource value: 0x7f020001
-			public const int Icon = 2130837505;
+			public const int Icon = 2130837504;
 			
 			static Drawable()
 			{
@@ -100,71 +76,107 @@ namespace Calculator
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060010
-			public const int ActionBackspace = 2131099664;
-			
-			// aapt resource value: 0x7f06000f
-			public const int ActionClear = 2131099663;
+			// aapt resource value: 0x7f060016
+			public const int ActionBackspace = 2131099670;
 			
 			// aapt resource value: 0x7f060014
-			public const int ActionDiv = 2131099668;
+			public const int ActionClear = 2131099668;
+			
+			// aapt resource value: 0x7f06001e
+			public const int ActionDiv = 2131099678;
+			
+			// aapt resource value: 0x7f06001a
+			public const int ActionMinus = 2131099674;
+			
+			// aapt resource value: 0x7f06001c
+			public const int ActionMul = 2131099676;
+			
+			// aapt resource value: 0x7f060018
+			public const int ActionPlus = 2131099672;
 			
 			// aapt resource value: 0x7f060012
-			public const int ActionMinus = 2131099666;
+			public const int ActionResult = 2131099666;
 			
-			// aapt resource value: 0x7f060013
-			public const int ActionMul = 2131099667;
+			// aapt resource value: 0x7f060010
+			public const int Dot = 2131099664;
 			
 			// aapt resource value: 0x7f060011
-			public const int ActionPlus = 2131099665;
-			
-			// aapt resource value: 0x7f06000e
-			public const int ActionResult = 2131099662;
-			
-			// aapt resource value: 0x7f06000c
-			public const int Dot = 2131099660;
-			
-			// aapt resource value: 0x7f06000d
-			public const int Number0 = 2131099661;
-			
-			// aapt resource value: 0x7f060003
-			public const int Number1 = 2131099651;
+			public const int Number0 = 2131099665;
 			
 			// aapt resource value: 0x7f060004
-			public const int Number2 = 2131099652;
+			public const int Number1 = 2131099652;
 			
 			// aapt resource value: 0x7f060005
-			public const int Number3 = 2131099653;
+			public const int Number2 = 2131099653;
 			
 			// aapt resource value: 0x7f060006
-			public const int Number4 = 2131099654;
-			
-			// aapt resource value: 0x7f060007
-			public const int Number5 = 2131099655;
+			public const int Number3 = 2131099654;
 			
 			// aapt resource value: 0x7f060008
-			public const int Number6 = 2131099656;
+			public const int Number4 = 2131099656;
 			
 			// aapt resource value: 0x7f060009
-			public const int Number7 = 2131099657;
+			public const int Number5 = 2131099657;
 			
 			// aapt resource value: 0x7f06000a
-			public const int Number8 = 2131099658;
+			public const int Number6 = 2131099658;
 			
-			// aapt resource value: 0x7f06000b
-			public const int Number9 = 2131099659;
+			// aapt resource value: 0x7f06000c
+			public const int Number7 = 2131099660;
 			
-			// aapt resource value: 0x7f060001
-			public const int digits = 2131099649;
+			// aapt resource value: 0x7f06000d
+			public const int Number8 = 2131099661;
 			
-			// aapt resource value: 0x7f060000
-			public const int root_layout = 2131099648;
+			// aapt resource value: 0x7f06000e
+			public const int Number9 = 2131099662;
 			
 			// aapt resource value: 0x7f060002
-			public const int tableLayout1 = 2131099650;
+			public const int Row0 = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int Row1 = 2131099651;
 			
 			// aapt resource value: 0x7f060015
-			public const int tableLayout3 = 2131099669;
+			public const int Row10 = 2131099669;
+			
+			// aapt resource value: 0x7f060007
+			public const int Row2 = 2131099655;
+			
+			// aapt resource value: 0x7f06000b
+			public const int Row3 = 2131099659;
+			
+			// aapt resource value: 0x7f06000f
+			public const int Row4 = 2131099663;
+			
+			// aapt resource value: 0x7f060013
+			public const int Row5 = 2131099667;
+			
+			// aapt resource value: 0x7f060017
+			public const int Row6 = 2131099671;
+			
+			// aapt resource value: 0x7f060019
+			public const int Row7 = 2131099673;
+			
+			// aapt resource value: 0x7f06001b
+			public const int Row8 = 2131099675;
+			
+			// aapt resource value: 0x7f06001d
+			public const int Row9 = 2131099677;
+			
+			// aapt resource value: 0x7f060000
+			public const int digits = 2131099648;
+			
+			// aapt resource value: 0x7f06001f
+			public const int linearLayout1 = 2131099679;
+			
+			// aapt resource value: 0x7f060001
+			public const int tableLayout1 = 2131099649;
+			
+			// aapt resource value: 0x7f060020
+			public const int tableLayout2 = 2131099680;
+			
+			// aapt resource value: 0x7f060021
+			public const int tableLayout3 = 2131099681;
 			
 			static Id()
 			{
@@ -199,7 +211,7 @@ namespace Calculator
 			public const int app_name = 2131034113;
 			
 			// aapt resource value: 0x7f050002
-			public const int error = 2131034114;
+			public const int button_one_text = 2131034114;
 			
 			// aapt resource value: 0x7f050000
 			public const int hello = 2131034112;

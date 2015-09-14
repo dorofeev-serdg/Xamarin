@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="Droid\Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Xamarin_Android_API_21" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\Clients\WeatherClient.cs">
+    <Files>
+      <File FileName="Droid\MainActivity.cs" Line="1" Column="1" />
+      <File FileName="Droid\Clients\WeatherClient.cs" Line="48" Column="15" />
+      <File FileName="Droid\ExpandableDataAdapter.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="d:\Progs\Xamarin\_Projects\Xamarin\Weather\Droid\IpClient.cs" line="14" column="1" />
+      <Breakpoint file="d:\Progs\Xamarin\_Projects\Xamarin\Weather\Droid\MainActivity.cs" line="23" column="1" />
+      <Breakpoint file="C:\Git\Xamarin\Weather\Droid\Clients\WeatherClient.cs" line="125" column="1" />
+      <Breakpoint file="C:\Git\Xamarin\Weather\Droid\MainActivity.cs" line="122" column="1" />
+      <Breakpoint file="C:\Git\Xamarin\Weather\Droid\MainActivity.cs" line="100" column="1" />
+      <Breakpoint file="C:\Git\Xamarin\Weather\Droid\Clients\WeatherClient.cs" line="65" column="1" />
+      <Breakpoint file="C:\Git\Xamarin\Weather\Droid\Clients\WeatherClient.cs" line="112" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Droid AndroidDesignerPreferredDevice="Nexus 4" />
+</Properties>

@@ -70,6 +70,7 @@
     <Compile Include="Contract\HourlyWeather.cs" />
     <Compile Include="ExpandableDataAdapter.cs" />
     <Compile Include="QueryParams\Gradus.cs" />
+    <Compile Include="Clients\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

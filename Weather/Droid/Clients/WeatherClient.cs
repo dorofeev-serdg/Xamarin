@@ -100,7 +100,7 @@ namespace Weather
 		/// Gets the weather images dir.
 		/// </summary>
 		/// <returns>The weather images dir.</returns>
-		public static string GetWeatherImagesDir()
+		private static string GetWeatherImagesDir()
 		{
 			return GetAppRootPath() + WEATHER_IMAGE_ROOT;
 		}

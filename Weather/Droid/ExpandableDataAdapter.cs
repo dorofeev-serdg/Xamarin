@@ -51,7 +51,16 @@ namespace Droid
 			if (header == null) {
 				header = Context.LayoutInflater.Inflate (Resource.Layout.ListGroup, null);
 			}
-			header.FindViewById<TextView> (Resource.Id.DataHeader).Text =  DailyWeather[groupPosition].date;
+				
+			DateTime date = new DateTime ();
+			if (DateTime.TryParse (DailyWeather [groupPosition].date, out date)) {
+				header.FindViewById<TextView> (Resource.Id.DataHeader).Text = String.Format ("{0} - {1} - {2}", 
+					date.DayOfWeek.ToString ().Substring(0, 3), date.Day.ToString("D2"), date.ToString ("MMMMM").Substring(0,3));
+			} else {
+				header.FindViewById<TextView> (Resource.Id.DataHeader).Text =  DailyWeather[groupPosition].date;
+			}
+
+
 
 			return header;
 		}
@@ -69,11 +78,13 @@ namespace Droid
 			row.FindViewById<TextView> (Resource.Id.Humidity).Text = string.Format ("{0}%", DailyWeather [groupPosition].hourly [childPosition].humidity);
 			row.FindViewById<ImageView> (Resource.Id.WeatherImage).SetImageBitmap (GetImageBitmapFromUrl(DailyWeather [groupPosition].hourly [childPosition].weatherIconUrl [0].value));
 
+			var rowView = row.FindViewById<TextView> (Resource.Id.Time);
+
 			Bitmap windBitmap = BitmapFactory.DecodeResource ( Context.Resources, Resource.Drawable.arrowLeft);
 			var rotatedBitmap = RotateBitmap (windBitmap, (float)DailyWeather [groupPosition].hourly [childPosition].winddirDegree - 90); // 90 is used as initial arraw is turned right
 
-			// TODO: investigate how to get required size to bitmap, 40 are used as default 
-			var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, 40, 40, true);
+			// Let's make the arraw squared by size of corner equal to height of element row
+			var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, rowView.LineHeight , rowView.LineHeight, true);
 			rotatedBitmap.Recycle();
 			row.FindViewById<ImageView> (Resource.Id.WindDirection).SetImageBitmap (bitmapScalled);
 

@@ -71,6 +71,8 @@
     <Compile Include="ExpandableDataAdapter.cs" />
     <Compile Include="QueryParams\Gradus.cs" />
     <Compile Include="Clients\Configuration.cs" />
+    <Compile Include="Clients\ConfigurationHelper.cs" />
+    <Compile Include="Clients\ApplicationSettingsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

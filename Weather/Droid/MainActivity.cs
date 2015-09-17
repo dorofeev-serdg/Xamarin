@@ -82,7 +82,10 @@ namespace Droid
 		private async Task<Weather.WeatherData> GetWeather()
 		{
 			var location = new Weather.Location ();
+			WeatherData weather = new WeatherData ();
+			bool updateWeather = true;
 
+			// Get current location
 			try {
 				location = await LocationClient.GetLocation ();
 			} catch (WebException e) {
@@ -95,20 +98,37 @@ namespace Droid
 				return null;
 			}
 
-			try
-			{
-				return await WeatherClient.GetWeather (location);
+			// Check if there's saved data
+			var configurations = await ConfigurationHelper.GetConfigurations ();
+			if( configurations != null &&
+				configurations.Length > 0) {
+				DateTime observationTime = new DateTime ();
+				if (DateTime.TryParse (configurations [0].Weather.data.current_condition [0].observation_time, out observationTime)) {
+
+					if (observationTime.AddHours (ApplicationSettingsHelper.TIME_CACHE_INTERVAL) > DateTime.Now) {
+						updateWeather = false;
+						weather = configurations [0].Weather;
+					}
+				}
 			}
-			catch (WebException e) {
-				// TODO: procecc the exception
-				string reason = e.Message;
-				return null;
+
+			// Update data from service if required
+			if (updateWeather) {
+				try {
+					weather = await WeatherClient.GetWeather (location);
+				} catch (WebException e) {
+					// TODO: procecc the exception
+					string reason = e.Message;
+					return null;
+				} catch (Exception e) {
+					// TODO: procecc the exception
+					string reason = e.Message;
+					return null;
+				}
 			}
-			catch (Exception e) {
-				// TODO: procecc the exception
-				string reason = e.Message;
-				return null;
-			}
+			await ConfigurationHelper.AddCheckConfiguration (new Configuration (){ Location = location, Weather = weather });
+
+			return weather;
 		}
 
 	/*	protected override void OnPause ()

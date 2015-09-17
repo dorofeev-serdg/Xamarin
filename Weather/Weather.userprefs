@@ -1,10 +1,31 @@
 ﻿<Properties StartupItem="Droid\Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\Clients\Configuration.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\Clients\ConfigurationHelper.cs">
     <Files>
-      <File FileName="Droid\ExpandableDataAdapter.cs" Line="58" Column="6" />
-      <File FileName="Droid\Clients\Configuration.cs" Line="8" Column="21" />
+      <File FileName="Droid\Clients\Configuration.cs" Line="5" Column="2" />
+      <File FileName="Droid\Clients\ConfigurationHelper.cs" Line="48" Column="47" />
+      <File FileName="Droid\Clients\ApplicationSettingsHelper.cs" Line="44" Column="48" />
+      <File FileName="Droid\Clients\WeatherClient.cs" Line="72" Column="11" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Weather" expanded="True">
+            <Node name="Droid" expanded="True">
+              <Node name="Clients" expanded="True">
+                <Node name="ConfigurationHelper.cs" selected="True" />
+              </Node>
+              <Node name="Contract" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="Weather" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

@@ -5,16 +5,14 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Android.Graphics;
-
+using Droid;
 namespace Weather
 {
 	public class WeatherClient
 	{
-		public static readonly string API_KEY = "ae14af6e1c2d83d16659aea4c71d9";
 		public static readonly string WEATHER_URL = "http://api.worldweatheronline.com/{0}/v2/weather.ashx?q={1}&format=json&num_of_days={2}&key={3}";
 		public static readonly int NUMBER_OF_DAYS = 5; 
 		public static readonly int HOURLY_WEATHER_COUNT = 8;
-		public static readonly string WEATHER_IMAGE_ROOT = @"/WeatherImages/";
 
 		/// <summary>
 		/// Performs web request and gets the weather from the service.
@@ -24,7 +22,7 @@ namespace Weather
 		public static async Task<WeatherData> GetWeather(Location location)
 		{
 			WeatherData result = null;
-			string weatherUrl = string.Format (WEATHER_URL, EnumHelper.GetDescription (Subscription.Subscript.free), location.city, NUMBER_OF_DAYS.ToString (), API_KEY);
+			string weatherUrl = string.Format (WEATHER_URL, EnumHelper.GetDescription (Subscription.Subscript.free), location.city, NUMBER_OF_DAYS.ToString (), ApplicationSettingsHelper.API_KEY);
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(weatherUrl);
 
 			using(WebResponse response = await request.GetResponseAsync())
@@ -63,8 +61,8 @@ namespace Weather
 		public static async Task GetWeatherImageFile(string uri)
 		{
 			string fileName = uri.Substring (uri.LastIndexOfAny (new char[] {	'/', '\\'}) + 1);
-			string rootPath = GetAppRootPath();
-			string fileDirRoot = GetWeatherImagesDir ();
+			string rootPath = ApplicationSettingsHelper.GetAppRootPath();
+			string fileDirRoot = ApplicationSettingsHelper.GetWeatherImagesDir ();
 			string totalFileName = System.IO.Path.Combine( fileDirRoot, fileName);
 
 			if (!System.IO.Directory.Exists (fileDirRoot)) {
@@ -86,33 +84,13 @@ namespace Weather
 		}
 
 		/// <summary>
-		/// Returns the folder path to the specific folder of Weather application
-		/// </summary>
-		/// <returns>The app root path.</returns>
-		public static string GetAppRootPath()
-		{
-			string rootPath = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
-			rootPath = rootPath.Substring (0, rootPath.LastIndexOfAny (new char[]{ '/', '\\' }) - 1);
-			return rootPath;
-		}
-
-		/// <summary>
-		/// Gets the weather images dir.
-		/// </summary>
-		/// <returns>The weather images dir.</returns>
-		private static string GetWeatherImagesDir()
-		{
-			return GetAppRootPath() + WEATHER_IMAGE_ROOT;
-		}
-
-		/// <summary>
 		/// Gets the weather image.
 		/// </summary>
 		/// <returns>The weather image.</returns>
 		/// <param name="fileName">File name.</param>
 		public static Bitmap GetWeatherImage(string fileName)
 		{
-			string imagesRoot = GetWeatherImagesDir ();
+			string imagesRoot = ApplicationSettingsHelper.GetWeatherImagesDir ();
 			string imagePath = System.IO.Path.Combine (imagesRoot, fileName);
 
 			if (File.Exists (imagePath)) {

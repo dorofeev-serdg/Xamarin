@@ -20,6 +20,8 @@ namespace Weather
 		public int windspeedKmph { get; set; }
 		[DataMember]
 		public WeatherIconUrl[] weatherIconUrl { get; set; }
+		[DataMember]
+		public string observation_time{ get; set; }
 	}
 }
 

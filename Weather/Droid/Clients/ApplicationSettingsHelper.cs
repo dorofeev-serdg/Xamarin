@@ -9,6 +9,7 @@ namespace Droid
 		public static readonly string CONFIG_ROOT = @"/Config/";
 		public static readonly string CONFIG_FILE_NAME = @"Config.txt";
 		public static readonly int    TIME_CACHE_INTERVAL = 1;	// number of hours to store data
+		private static readonly string LOCATION_FILE_NAME = @"Locations.json";
 
 		/// <summary>
 		/// Returns the folder path to the specific folder of Weather application
@@ -37,6 +38,15 @@ namespace Droid
 		public static string GetConfigRootPath()
 		{
 			return GetAppRootPath() + CONFIG_ROOT;
+		}
+
+		/// <summary>
+		/// Gets the stored locations file path.
+		/// </summary>
+		/// <returns>The stored locations file path.</returns>
+		public static string GetStoredLocationsFilePath()
+		{
+			return GetConfigRootPath () + LOCATION_FILE_NAME;
 		}
 
 		/// <summary>

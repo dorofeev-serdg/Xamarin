@@ -20,4 +20,3 @@ namespace Weather
 		public string timezone { get; set; }
 	}
 }
-

@@ -48,7 +48,10 @@ namespace Droid
 			public const int arrowLeft = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Icon = 2130837505;
+			public const int ic_action_overflow = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Icon = 2130837506;
 			
 			static Drawable()
 			{
@@ -63,32 +66,47 @@ namespace Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050006
-			public const int DataHeader = 2131034118;
+			// aapt resource value: 0x7f070008
+			public const int DataHeader = 2131165192;
 			
-			// aapt resource value: 0x7f050002
-			public const int Humidity = 2131034114;
+			// aapt resource value: 0x7f070002
+			public const int Humidity = 2131165186;
 			
-			// aapt resource value: 0x7f050003
-			public const int Temp = 2131034115;
+			// aapt resource value: 0x7f070003
+			public const int Temp = 2131165187;
 			
-			// aapt resource value: 0x7f050000
-			public const int Time = 2131034112;
+			// aapt resource value: 0x7f070000
+			public const int Time = 2131165184;
 			
-			// aapt resource value: 0x7f050001
-			public const int WeatherImage = 2131034113;
+			// aapt resource value: 0x7f070001
+			public const int WeatherImage = 2131165185;
 			
-			// aapt resource value: 0x7f050004
-			public const int WindDirection = 2131034116;
+			// aapt resource value: 0x7f070004
+			public const int WindDirection = 2131165188;
 			
-			// aapt resource value: 0x7f050005
-			public const int WindSpeed = 2131034117;
+			// aapt resource value: 0x7f070005
+			public const int WindSpeed = 2131165189;
 			
-			// aapt resource value: 0x7f050007
-			public const int cityName = 2131034119;
+			// aapt resource value: 0x7f07000b
+			public const int item_subtitle = 2131165195;
 			
-			// aapt resource value: 0x7f050008
-			public const int myExpandableListview = 2131034120;
+			// aapt resource value: 0x7f07000c
+			public const int item_title = 2131165196;
+			
+			// aapt resource value: 0x7f07000d
+			public const int menu = 2131165197;
+			
+			// aapt resource value: 0x7f07000a
+			public const int sample_content_fragment = 2131165194;
+			
+			// aapt resource value: 0x7f070009
+			public const int sample_main_layout = 2131165193;
+			
+			// aapt resource value: 0x7f070006
+			public const int sliding_tabs = 2131165190;
+			
+			// aapt resource value: 0x7f070007
+			public const int viewpager = 2131165191;
 			
 			static Id()
 			{
@@ -107,10 +125,16 @@ namespace Droid
 			public const int DataListItem = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int ListGroup = 2130903041;
+			public const int fragment_sample = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int ListGroup = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Main = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int pager_item = 2130903044;
 			
 			static Layout()
 			{
@@ -118,6 +142,22 @@ namespace Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int actionbar_main = 2131099648;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}
@@ -134,6 +174,25 @@ namespace Droid
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int CustomActionBarTheme = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int MyActionBar = 2131034113;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}

@@ -10,7 +10,6 @@ namespace Droid
 {
 	public class ConfigurationHelper
 	{
-
 		/// <summary>
 		/// Reads the configuration from the file
 		/// </summary>
@@ -58,6 +57,39 @@ namespace Droid
 
 			var json = JsonConvert.SerializeObject (configList);
 			File.WriteAllText (ApplicationSettingsHelper.GetConfigFilePath (), json);
+		}
+
+		/// <summary>
+		/// Gets the stored locations, i.e. array of cities
+		/// </summary>
+		/// <returns>The stored locations.</returns>
+		public static async Task<string[]> GetStoredLocations()
+		{
+			StoredLocation location = null;
+			string configRootPath = ApplicationSettingsHelper.GetConfigRootPath ();
+			string locationsFilePath = ApplicationSettingsHelper.GetStoredLocationsFilePath ();
+
+			if (!System.IO.Directory.Exists (configRootPath)) {
+				System.IO.Directory.CreateDirectory (configRootPath);
+			}
+
+			if (File.Exists (locationsFilePath)) {
+				using (StreamReader reader = new StreamReader (locationsFilePath)) {
+					string json = await reader.ReadToEndAsync ();
+
+					if (json != null && json.Length > 0) {
+						try
+						{
+							location = JsonConvert.DeserializeObject<StoredLocation>(json);
+						}
+						catch{
+							// TODO: process the exception of deserialization
+							return null;
+						}
+					}
+				}
+			}
+			return location.locations;
 		}
 	}
 }

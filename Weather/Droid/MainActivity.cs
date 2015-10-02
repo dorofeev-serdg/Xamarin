@@ -16,12 +16,11 @@ using System.Linq;
 namespace Droid
 {
 	[Activity (Label = "Droid", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity //, ILocationListener
+	public class MainActivity : Activity
 	{
-		//private LocationManager LocManager;
 		private Weather.Location CurrentLocation = new Weather.Location();
-		//private Android.Locations.Location AndroidCurrentLocation;
-		//private string LocationProvider;
+		private List<Weather.WeatherData> CurrentWeather = new List<WeatherData>();
+
 		async protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -29,51 +28,25 @@ namespace Droid
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			//InitializeLocationManager();
+			FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+			SlidingTabsFragment fragment = new SlidingTabsFragment ();
+			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+			transaction.Commit ();
 
+			/*
 			var currentWeather = await GetWeather ();
 			if (currentWeather != null) {
 				var listView = FindViewById<ExpandableListView> (Resource.Id.myExpandableListview);
 				listView.SetAdapter (new ExpandableDataAdapter (this, currentWeather));
 			}
+			*/
 		}
 
-		/// <summary>
-		/// Gets the location based on android location service
-		/// </summary>
-	/*	private async Task<Weather.Location> GetHardwareLocation()
+		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-
-			if(LocManager.IsProviderEnabled(LocationProvider))
-			{
-				LocManager.RequestLocationUpdates (LocationProvider, 2000, 1, this);
-			} 
-
-			var location = new Weather.Location ();
-			if (AndroidCurrentLocation == null) {
-
-				try {
-					location = await LocationClient.GetLocation ();
-				} catch (WebException e) {
-					// TODO: procecc the exception
-					string reason = e.Message;
-					return null;
-				} catch (Exception e) {
-					// TODO: procecc the exception
-					string reason = e.Message;
-					return null;
-				}
-
-				CurrentLocation = location;
-
-			} else {
-				location.lat = AndroidCurrentLocation.Latitude;
-				location.lon = AndroidCurrentLocation.Longitude;
-			}
-
-			return location;
-
-		}*/
+			MenuInflater.Inflate (Resource.Menu.actionbar_main, menu);
+			return base.OnCreateOptionsMenu (menu);
+		}
 
 		/// <summary>
 		/// Gets the weather.
@@ -83,7 +56,7 @@ namespace Droid
 		{
 			var location = new Weather.Location ();
 			WeatherData weather = new WeatherData ();
-			bool updateWeather = true;
+			//bool updateWeather = true;
 
 			// Get current location
 			try {
@@ -98,7 +71,15 @@ namespace Droid
 				return null;
 			}
 
-			// Check if there's saved data
+			var storedLocations = await ConfigurationHelper.GetStoredLocations ();
+			foreach(var loc in storedLocations)
+			{
+				var localWeather = await WeatherClient.GetWeather (new Weather.Location{ city = loc});
+				if (localWeather != null)
+					CurrentWeather.Add (localWeather);
+			}
+
+/*			// Check if there's saved data
 			var configurations = await ConfigurationHelper.GetConfigurations ();
 			if( configurations != null &&
 				configurations.Length > 0) {
@@ -127,50 +108,8 @@ namespace Droid
 				}
 			}
 			await ConfigurationHelper.AddCheckConfiguration (new Configuration (){ Location = location, Weather = weather });
-
+			*/
 			return weather;
 		}
-
-	/*	protected override void OnPause ()
-		{
-			base.OnPause ();
-			LocManager.RemoveUpdates (this);
-		}
-
-		public void OnLocationChanged (Android.Locations.Location location)
-		{
-			CurrentLocation.lat = location.Latitude; 
-			CurrentLocation.lon = location.Longitude;
-
-			AndroidCurrentLocation = location;
-		}
-
-		public void OnProviderDisabled (string provider){}
-
-		public void OnProviderEnabled (string provider){}
-
-		public void OnStatusChanged (string provider, Availability status, Bundle extras){}
-
-		void InitializeLocationManager()
-		{
-			LocManager = (LocationManager)GetSystemService(LocationService);
-			Criteria criteriaForLocationService = new Criteria
-			{
-				Accuracy = Accuracy.Coarse
-			};
-			IList<string> acceptableLocationProviders = LocManager.GetProviders(criteriaForLocationService, true);
-
-			if (acceptableLocationProviders.Count > 0)
-			{
-				LocationProvider = acceptableLocationProviders[0];
-			}
-			else
-			{
-				LocationProvider = String.Empty;
-			}
-		}*/
-
 	}
 }
-
-

@@ -6,6 +6,10 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Android.Graphics;
 using Droid;
+using System.Threading;
+using System.Collections.Generic;
+
+
 namespace Weather
 {
 	public class WeatherClient
@@ -41,17 +45,101 @@ namespace Weather
 			int  length2 = result.data.weather[0].hourly.Length;
 
 			// TODO: investigate ho w to run this tasks in Parallel
-			//Task[]taskArray = new Task[length1 * length2];
 			for( int i = 0; i < length1; i++){
 				for(int j = 0; j < length2; j++) {
 					//taskArray[i*length2 + j]  = Task.Factory.StartNew(async () => { await GetWeatherImageFile (result.data.weather[i].hourly[j].weatherIconUrl[0].value); });
 					await GetWeatherImageFile (result.data.weather[i].hourly[j].weatherIconUrl[0].value);
 				}
 			}
-
-			//Task.WaitAll(taskArray);  
 			return result;
 		}
+
+/*		/// <summary>
+		/// Gets the weather for all the locations
+		/// </summary>
+		/// <returns>The weather array</returns>
+		/// <param name="locations">Locations.</param>
+		public static async Task<WeatherData[]> GetWeather(string[] inputLocations)
+		{
+			// Such a structure of parallel tasks is implemented to avoid losing context on parallel task execution
+			WeatherData[] weatherArray = new WeatherData[inputLocations.Length] ;
+			Location[] locations = new Location [inputLocations.Length];
+
+			// Declare list of tasks to wait them in future
+			Func<Task>[] taskList = new Func<Task>[inputLocations.Length];
+
+			// Declare and populate array of semaphors 
+			ManualResetEvent[] resetEvent = new ManualResetEvent [inputLocations.Length];
+
+			for(int i = 0; i < inputLocations.Length; i++)
+			{
+				resetEvent[i] = new ManualResetEvent(false);
+			}
+
+			// Define tasks to update the weather and add each of them to the list
+			for (int i = 0; i < inputLocations.Length; i++)
+			{
+				Func<Task> task = async() => {
+					try {
+						weatherArray[i] = await GetWeather (new Location (){ city = inputLocations[i] });
+					}
+					catch(Exception e)
+					{
+						Console.WriteLine(e.Message);
+						resetEvent [i].Set ();
+					} finally {
+						resetEvent [i].Set ();
+					}
+				};
+				taskList [i] = task;
+			}
+
+			// Run each task 
+			for (int i = 0; i < inputLocations.Length; i++)
+			{
+				ThreadPool.QueueUserWorkItem (x => taskList[i]());
+			}
+
+			// Wait all the semaphores are set
+			WaitHandle.WaitAll (resetEvent, -1, false);
+
+			return weatherArray;
+		} 
+
+		/// <summary>
+		/// Gets the weather for all the locations
+		/// </summary>
+		/// <returns>The weather array</returns>
+		/// <param name="locations">Locations.</param>
+		public static async Task<WeatherData[]> GetWeather(string[] inputLocations)
+		{
+			// Such a structure of parallel tasks is implemented to avoid losing context on parallel task execution
+			WeatherData[] weatherArray = new WeatherData[inputLocations.Length] ;
+			Location[] locations = new Location [inputLocations.Length];
+
+			// Declare list of tasks to wait them in future
+			Task[] taskList = new Task<WeatherData>[inputLocations.Length];
+
+			// Define tasks to update the weather and add each of them to the list
+			for (int i = 0; i < inputLocations.Length; i++)
+			{
+				taskList [i] = Task.Factory.StartNew ( async(loc) => {
+					await GetWeather (new Location (){ city = (string)loc });
+				}, inputLocations [i]);
+			}
+
+			// Wait all the tasks
+			Task.WaitAll(taskList); 
+
+			//for (int i = 0; i < inputLocations.Length; i++) {
+			//	weatherArray [i] = taskList [i].Result;
+			//}
+
+			return weatherArray;
+		}
+		*/
+
+
 
 		/// <summary>
 		/// Downloads the required weather image.

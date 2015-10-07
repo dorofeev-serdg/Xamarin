@@ -87,14 +87,11 @@ namespace Droid
 			// aapt resource value: 0x7f070005
 			public const int WindSpeed = 2131165189;
 			
-			// aapt resource value: 0x7f07000b
-			public const int item_subtitle = 2131165195;
-			
 			// aapt resource value: 0x7f07000c
-			public const int item_title = 2131165196;
+			public const int menu = 2131165196;
 			
-			// aapt resource value: 0x7f07000d
-			public const int menu = 2131165197;
+			// aapt resource value: 0x7f07000b
+			public const int myExpandableListview = 2131165195;
 			
 			// aapt resource value: 0x7f07000a
 			public const int sample_content_fragment = 2131165194;

@@ -19,6 +19,12 @@ namespace Droid
 	{
 		private SlidingTabScrollView mSlidingTabScrollView;
 		private ViewPager mViewPager;
+		private List<Weather.WeatherData> CurrentWeather = new List<Weather.WeatherData> ();
+
+		public SlidingTabsFragment( List<Weather.WeatherData> weatherDataList): base()
+		{
+			CurrentWeather = weatherDataList;
+		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
@@ -29,25 +35,35 @@ namespace Droid
 		{
 			mSlidingTabScrollView = View.FindViewById<SlidingTabScrollView> (Resource.Id.sliding_tabs);
 			mViewPager = view.FindViewById<ViewPager> (Resource.Id.viewpager);
-			mViewPager.Adapter = new SamplePagerAdapter ();
+			mViewPager.Adapter = new SamplePagerAdapter (CurrentWeather);
 
 			mSlidingTabScrollView.ViewPager = mViewPager;
 		}
 
+
 		public class SamplePagerAdapter : PagerAdapter
 		{
+			private List<Weather.WeatherData> CurrentWeather = new List<Weather.WeatherData> ();
 			List<string> items = new List<string>();
 
-			public SamplePagerAdapter() : base()
+			/// <summary>
+			/// Populates tab strips at the screen top with names of cities
+			/// </summary>
+			/// <param name="currentWeather">List of weather in cities</param>
+			public SamplePagerAdapter(List<Weather.WeatherData> currentWeather) : base()
 			{
-				items.Add("Xamarin");
-				items.Add("Android");
-				items.Add("Tutorial");
-				items.Add("Part");
-				items.Add("12");
-				items.Add("Hooray");
+				CurrentWeather = currentWeather;
+
+				foreach( var weather in CurrentWeather)	{
+					string tab = weather.data.request[0].query.Contains(",") ? weather.data.request[0].query.Substring( 0 ,  weather.data.request[0].query.IndexOf(",")) : weather.data.request[0].query;
+					items.Add(tab);
+				}
 			}
 
+			/// <summary>
+			/// Override the number of tabs
+			/// </summary>
+			/// <value>The count.</value>
 			public override int Count
 			{
 				get{ return items.Count; }
@@ -58,14 +74,18 @@ namespace Droid
 				return view == obj;
 			}
 
+
 			public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
 			{
 				View view = LayoutInflater.From (container.Context).Inflate (Resource.Layout.pager_item, container, false);
 				container.AddView (view);
 
-				TextView txtTitle = view.FindViewById<TextView> (Resource.Id.item_title);
-				int pos = position + 1;
-				txtTitle.Text = pos.ToString ();
+				var listView = view.FindViewById<ExpandableListView> (Resource.Id.myExpandableListview);
+				listView.SetAdapter (new ExpandableDataAdapter (CurrentWeather[position]));
+
+//				TextView txtTitle = view.FindViewById<TextView> (Resource.Id.item_title);
+//				int pos = position + 1;
+//				txtTitle.Text = pos.ToString ();
 
 				return view;
 			}

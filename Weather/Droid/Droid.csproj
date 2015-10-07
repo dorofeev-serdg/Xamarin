@@ -81,6 +81,7 @@
     <Compile Include="SlidingTabStrip.cs" />
     <Compile Include="SlidingTabScrollView.cs" />
     <Compile Include="SlidingTabsFragment.cs" />
+    <Compile Include="DataAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -89,7 +89,7 @@ namespace Droid
 					}
 				}
 			}
-			return location.locations;
+			return location != null ? location.locations : null;
 		}
 	}
 }

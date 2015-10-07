@@ -19,10 +19,14 @@ namespace Droid
 {
 	public class ExpandableDataAdapter : BaseExpandableListAdapter {
 
-		readonly Activity Context;
-		public ExpandableDataAdapter(Activity newContext, Weather.WeatherData newWeather) : base()
+
+		protected List<Weather.HourlyWeather> HourlyWeather { get; set; }
+		protected List<Weather.ServerWeather> DailyWeather { get; set; }
+		protected Weather.WeatherData WeatherData { get; set; }
+
+		public ExpandableDataAdapter( Weather.WeatherData newWeather) : base()
 		{
-			Context = newContext;
+
 			WeatherData = newWeather;
 
 			var dailyWeather = new List<Weather.ServerWeather> ();
@@ -41,15 +45,12 @@ namespace Droid
 			HourlyWeather = hourlyWeather;
 		}
 
-		protected List<Weather.HourlyWeather> HourlyWeather { get; set; }
-		protected List<Weather.ServerWeather> DailyWeather { get; set; }
-		protected Weather.WeatherData WeatherData { get; set; }
-
 		public override View GetGroupView (int groupPosition, bool isExpanded, View convertView, ViewGroup parent)
 		{
 			View header = convertView;
 			if (header == null) {
-				header = Context.LayoutInflater.Inflate (Resource.Layout.ListGroup, null);
+				var inflater = Application.Context.GetSystemService(Context.LayoutInflaterService) as LayoutInflater;
+				header = inflater.Inflate (Resource.Layout.ListGroup, null);
 			}
 				
 			DateTime date = new DateTime ();
@@ -60,8 +61,6 @@ namespace Droid
 				header.FindViewById<TextView> (Resource.Id.DataHeader).Text =  DailyWeather[groupPosition].date;
 			}
 
-
-
 			return header;
 		}
 
@@ -69,7 +68,8 @@ namespace Droid
 		{
 			View row = convertView;
 			if (row == null) {
-				row = Context.LayoutInflater.Inflate (Resource.Layout.DataListItem, null);
+				var inflater = Application.Context.GetSystemService(Context.LayoutInflaterService) as LayoutInflater;
+				row = inflater.Inflate (Resource.Layout.DataListItem, null);
 			}
 				
 			row.FindViewById<TextView> (Resource.Id.Time).Text = DailyWeather [groupPosition].hourly [childPosition].Time;
@@ -80,7 +80,7 @@ namespace Droid
 
 			var rowView = row.FindViewById<TextView> (Resource.Id.Time);
 
-			Bitmap windBitmap = BitmapFactory.DecodeResource ( Context.Resources, Resource.Drawable.arrowLeft);
+			Bitmap windBitmap = BitmapFactory.DecodeResource ( Application.Context.Resources, Resource.Drawable.arrowLeft);
 			var rotatedBitmap = RotateBitmap (windBitmap, (float)DailyWeather [groupPosition].hourly [childPosition].winddirDegree - 90); // 90 is used as initial arraw is turned right
 
 			// Let's make the arraw squared by size of corner equal to height of element row

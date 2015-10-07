@@ -19,28 +19,32 @@ namespace Droid
 	public class MainActivity : Activity
 	{
 		private Weather.Location CurrentLocation = new Weather.Location();
-		private List<Weather.WeatherData> CurrentWeather = new List<WeatherData>();
+		private List<Weather.WeatherData> CurrentWeather = new List<Weather.WeatherData>();
 
 		async protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
+			// Read locations and get weather for every location
+			var storedLocations = await ConfigurationHelper.GetStoredLocations ();
+			if (storedLocations != null && storedLocations.Length > 0 && (CurrentWeather == null || CurrentWeather.Count == 0)) {
+				foreach (var loc in storedLocations) {
+					var localWeather = await WeatherClient.GetWeather (new Weather.Location{ city = loc });
+					if (localWeather != null)
+						CurrentWeather.Add (localWeather);
+				}
+			} else {
+				// TODO: procecc the error
+			}
+
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
 			FragmentTransaction transaction = FragmentManager.BeginTransaction ();
-			SlidingTabsFragment fragment = new SlidingTabsFragment ();
+			SlidingTabsFragment fragment = new SlidingTabsFragment (CurrentWeather);
 			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 			transaction.Commit ();
-
-			/*
-			var currentWeather = await GetWeather ();
-			if (currentWeather != null) {
-				var listView = FindViewById<ExpandableListView> (Resource.Id.myExpandableListview);
-				listView.SetAdapter (new ExpandableDataAdapter (this, currentWeather));
-			}
-			*/
-		}
+					}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{

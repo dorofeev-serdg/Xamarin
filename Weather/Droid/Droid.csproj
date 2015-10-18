@@ -58,26 +58,9 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contract\Location.cs" />
-    <Compile Include="QueryParams\EnumHelper.cs" />
-    <Compile Include="QueryParams\Subscription.cs" />
-    <Compile Include="Contract\Weather.cs" />
-    <Compile Include="Clients\IpClient.cs" />
-    <Compile Include="Clients\WeatherClient.cs" />
-    <Compile Include="Clients\LocationClient.cs" />
-    <Compile Include="Contract\Ip.cs" />
-    <Compile Include="Contract\Data.cs" />
-    <Compile Include="Contract\WeatherRequest.cs" />
-    <Compile Include="Contract\CurrentCondition.cs" />
-    <Compile Include="Contract\WeatherIconUrl.cs" />
-    <Compile Include="Contract\ServerWeather.cs" />
-    <Compile Include="Contract\HourlyWeather.cs" />
     <Compile Include="ExpandableDataAdapter.cs" />
-    <Compile Include="QueryParams\Gradus.cs" />
-    <Compile Include="Clients\Configuration.cs" />
     <Compile Include="Clients\ConfigurationHelper.cs" />
     <Compile Include="Clients\ApplicationSettingsHelper.cs" />
-    <Compile Include="Contract\StoredLocation.cs" />
     <Compile Include="SlidingTabStrip.cs" />
     <Compile Include="SlidingTabScrollView.cs" />
     <Compile Include="SlidingTabsFragment.cs" />
@@ -114,6 +97,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_overflow.png" />
   </ItemGroup>
+  <Import Project="..\Weather\Weather.projitems" Label="Shared" Condition="Exists('..\Weather\Weather.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Clients\" />

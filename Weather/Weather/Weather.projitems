@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{18BE7D5F-2575-405B-89DC-B9107DDEB609}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Weather</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\Configuration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\IpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\LocationClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\WeatherClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\CurrentCondition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\HourlyWeather.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\Ip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\ServerWeather.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\StoredLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\Weather.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\WeatherIconUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contract\WeatherRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryParams\EnumHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryParams\Gradus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryParams\Subscription.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Clients\" />
+  </ItemGroup>
+</Project>

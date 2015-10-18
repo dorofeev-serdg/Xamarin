@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Weather
 {
 	[DataContract]
-	 public class HourlyWeather
+	[JsonObject(MemberSerialization.OptIn)]
+	public class HourlyWeather
 	{
 		[DataMember]
+		[JsonProperty(PropertyName = "time")]
 		public int time { get; set;	}
 		public string Time 
 		{ 
@@ -17,16 +20,22 @@ namespace Weather
 			} 
 		}
 		[DataMember]
+		[JsonProperty(PropertyName = "tempC")]
 		public int tempC { get; set; }
 		[DataMember]
+		[JsonProperty(PropertyName = "pressure")]
 		public int pressure { get; set; }
 		[DataMember]
+		[JsonProperty(PropertyName = "weatherIconUrl")]
 		public WeatherIconUrl[] weatherIconUrl { get; set; }
 		[DataMember]
+		[JsonProperty(PropertyName = "winddirDegree")]
 		public int winddirDegree { get; set; }
 		[DataMember]
+		[JsonProperty(PropertyName = "windspeedKmph")]
 		public int windspeedKmph { get; set; }
 		[DataMember]
+		[JsonProperty(PropertyName = "humidity")]
 		public int humidity { get; set; }
 	}
 }

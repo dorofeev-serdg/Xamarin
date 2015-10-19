@@ -17,9 +17,8 @@ using System.Threading.Tasks;
 
 namespace Droid
 {
-	public class ExpandableDataAdapter : BaseExpandableListAdapter {
-
-
+	public class ExpandableDataAdapter : BaseExpandableListAdapter 
+	{
 		protected List<Weather.HourlyWeather> HourlyWeather { get; set; }
 		protected List<Weather.ServerWeather> DailyWeather { get; set; }
 		protected Weather.WeatherData WeatherData { get; set; }
@@ -49,8 +48,9 @@ namespace Droid
 		{
 			View header = convertView;
 			if (header == null) {
-				var inflater = Application.Context.GetSystemService(Context.LayoutInflaterService) as LayoutInflater;
-				header = inflater.Inflate (Resource.Layout.ListGroup, null);
+				using (var inflater = Application.Context.GetSystemService (Context.LayoutInflaterService) as LayoutInflater) {
+					header = inflater.Inflate (Resource.Layout.ListGroup, null);
+				}
 			}
 				
 			DateTime date = new DateTime ();
@@ -68,8 +68,9 @@ namespace Droid
 		{
 			View row = convertView;
 			if (row == null) {
-				var inflater = Application.Context.GetSystemService(Context.LayoutInflaterService) as LayoutInflater;
-				row = inflater.Inflate (Resource.Layout.DataListItem, null);
+				using (var inflater = Application.Context.GetSystemService (Context.LayoutInflaterService) as LayoutInflater) {
+					row = inflater.Inflate (Resource.Layout.DataListItem, null);
+				}
 			}
 				
 			row.FindViewById<TextView> (Resource.Id.Time).Text = DailyWeather [groupPosition].hourly [childPosition].Time;
@@ -79,15 +80,16 @@ namespace Droid
 			row.FindViewById<ImageView> (Resource.Id.WeatherImage).SetImageBitmap (GetImageBitmapFromUrl(DailyWeather [groupPosition].hourly [childPosition].weatherIconUrl [0].value));
 
 			var rowView = row.FindViewById<TextView> (Resource.Id.Time);
-
-			Bitmap windBitmap = BitmapFactory.DecodeResource ( Application.Context.Resources, Resource.Drawable.arrowLeft);
+			Bitmap windBitmap = BitmapFactory.DecodeResource (Application.Context.Resources, Resource.Drawable.arrowLeft);
 			var rotatedBitmap = RotateBitmap (windBitmap, (float)DailyWeather [groupPosition].hourly [childPosition].winddirDegree - 90); // 90 is used as initial arraw is turned right
 
 			// Let's make the arraw squared by size of corner equal to height of element row
-			var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, rowView.LineHeight , rowView.LineHeight, true);
-			rotatedBitmap.Recycle();
-			row.FindViewById<ImageView> (Resource.Id.WindDirection).SetImageBitmap (bitmapScalled);
+			using (var bitmapScalled = Bitmap.CreateScaledBitmap (rotatedBitmap, rowView.LineHeight, rowView.LineHeight, true)) {
+				row.FindViewById<ImageView> (Resource.Id.WindDirection).SetImageBitmap (bitmapScalled);
+			}
 
+			windBitmap.Recycle ();
+			rotatedBitmap.Recycle ();
 			return row;
 		}
 
@@ -104,9 +106,9 @@ namespace Droid
 
 		public static Bitmap RotateBitmap(Bitmap source, float angle)
 		{
-			Matrix matrix = new Matrix();
+			Matrix matrix = new Matrix ();
 			matrix.SetRotate (angle);
-			return Bitmap.CreateBitmap(source, 0, 0, (int)source.GetBitmapInfo().Width, (int)source.GetBitmapInfo().Height, matrix, true);
+			return Bitmap.CreateBitmap (source, 0, 0, (int)source.GetBitmapInfo ().Width, (int)source.GetBitmapInfo ().Height, matrix, true);
 		}
 
 		#region implemented abstract members of BaseExpandableListAdapter
@@ -151,8 +153,7 @@ namespace Droid
 		private Bitmap GetImageBitmapFromUrl(string url)
 		{
 			Bitmap imageBitmap = null;
-
-			string fileName = url.Substring (url.LastIndexOfAny (new char[] {	'/', '\\'}) + 1);
+			string fileName = url.Substring (url.LastIndexOfAny (new char[] {	'/', '\\' }) + 1);
 			imageBitmap = Weather.WeatherClient.GetWeatherImage (fileName);
 
 			if (imageBitmap == null) {
@@ -165,7 +166,6 @@ namespace Droid
 			}
 			return imageBitmap;
 		}
-			
 	}
 }
 

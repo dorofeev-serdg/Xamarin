@@ -1,15 +1,31 @@
 ﻿<Properties StartupItem="Droid\Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0123456789ABCDEF" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\MainActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid\ExpandableDataAdapter.cs">
     <Files>
-      <File FileName="Droid\MainActivity.cs" Line="30" Column="1" />
-      <File FileName="Droid\SlidingTabStrip.cs" Line="1" Column="1" />
-      <File FileName="Droid\SlidingTabScrollView.cs" Line="1" Column="1" />
-      <File FileName="Droid\SlidingTabsFragment.cs" Line="1" Column="1" />
-      <File FileName="Droid\DataAdapter.cs" Line="1" Column="1" />
-      <File FileName="Droid\ExpandableDataAdapter.cs" Line="1" Column="1" />
-      <File FileName="c:\Git\Xamarin\Weather\Droid\Clients\ConfigurationHelper.cs" Line="95" Column="1" />
+      <File FileName="Weather\Clients\WeatherClient.cs" Line="54" Column="1" />
+      <File FileName="c:\Git\Xamarin\Weather\Droid\MainActivity.cs" Line="38" Column="5" />
+      <File FileName="Weather\Contract\Data.cs" Line="19" Column="18" />
+      <File FileName="Weather\Contract\ServerWeather.cs" Line="12" Column="37" />
+      <File FileName="Weather\Contract\StoredLocation.cs" Line="17" Column="1" />
+      <File FileName="Droid.UITests\Tests.cs" Line="13" Column="3" />
+      <File FileName="Droid\ExpandableDataAdapter.cs" Line="82" Column="4" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Weather" expanded="True">
+            <Node name="Droid" expanded="True">
+              <Node name="ExpandableDataAdapter.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="Weather" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

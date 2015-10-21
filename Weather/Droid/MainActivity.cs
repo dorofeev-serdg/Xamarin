@@ -34,22 +34,44 @@ namespace Droid
 						CurrentWeather.Add (localWeather);
 				}
 			} else {
-				// TODO: procecc the error
+				ShowNotification ("Error", "No presaved location found");
+				// TODO: show view to enter new location
 			}
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
+			if (bundle != null) {
+				
+			}
+
 			FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 			SlidingTabsFragment fragment = new SlidingTabsFragment (CurrentWeather);
 			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 			transaction.Commit ();
-					}
+		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			MenuInflater.Inflate (Resource.Menu.actionbar_main, menu);
 			return base.OnCreateOptionsMenu (menu);
+		}
+
+		/// <summary>
+		/// Shows the alert.
+		/// </summary>
+		/// <param name="header">Header text.</param>
+		/// <param name="message">Message text.</param>
+		private void ShowNotification(string header, string message)
+		{
+			var builder = new AlertDialog.Builder (this);
+			builder.SetCancelable (true);
+			//builder.SetPositiveButton ("Ok", (senderArert, EventArgs) => {});
+
+			var alert = builder.Create ();
+			alert.SetTitle(header);
+			alert.SetMessage(message);
+			alert.Show();			
 		}
 
 		/// <summary>
@@ -60,19 +82,16 @@ namespace Droid
 		{
 			var location = new Weather.Location ();
 			WeatherData weather = new WeatherData ();
-			//bool updateWeather = true;
 
 			// Get current location
 			try {
 				location = await LocationClient.GetLocation ();
 			} catch (WebException e) {
-				// TODO: procecc the exception
-				string reason = e.Message;
-				return null;
+				ShowNotification ("Error", "Error defining current location");
+				// TODO: show view to enter current location
 			} catch (Exception e) {
-				// TODO: procecc the exception
-				string reason = e.Message;
-				return null;
+				ShowNotification ("Error", "Application will be closed.");
+				Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 			}
 
 			var storedLocations = await ConfigurationHelper.GetStoredLocations ();
@@ -83,36 +102,6 @@ namespace Droid
 					CurrentWeather.Add (localWeather);
 			}
 
-/*			// Check if there's saved data
-			var configurations = await ConfigurationHelper.GetConfigurations ();
-			if( configurations != null &&
-				configurations.Length > 0) {
-				DateTime observationTime = new DateTime ();
-				if (DateTime.TryParse (configurations [0].Weather.data.current_condition [0].observation_time, out observationTime)) {
-
-					if (observationTime.AddHours (ApplicationSettingsHelper.TIME_CACHE_INTERVAL) > DateTime.Now) {
-						updateWeather = false;
-						weather = configurations [0].Weather;
-					}
-				}
-			}
-
-			// Update data from service if required
-			if (updateWeather) {
-				try {
-					weather = await WeatherClient.GetWeather (location);
-				} catch (WebException e) {
-					// TODO: procecc the exception
-					string reason = e.Message;
-					return null;
-				} catch (Exception e) {
-					// TODO: procecc the exception
-					string reason = e.Message;
-					return null;
-				}
-			}
-			await ConfigurationHelper.AddCheckConfiguration (new Configuration (){ Location = location, Weather = weather });
-			*/
 			return weather;
 		}
 	}

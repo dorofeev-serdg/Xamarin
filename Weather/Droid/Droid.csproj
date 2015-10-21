@@ -96,6 +96,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\layout-land\DataListItem.axml" />
+    <AndroidResource Include="Resources\layout-land\fragment_sample.axml" />
+    <AndroidResource Include="Resources\layout-land\ListGroup.axml" />
+    <AndroidResource Include="Resources\layout-land\Main.axml" />
+    <AndroidResource Include="Resources\layout-land\pager_item.axml" />
   </ItemGroup>
   <Import Project="..\Weather\Weather.projitems" Label="Shared" Condition="Exists('..\Weather\Weather.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -103,6 +108,7 @@
     <Folder Include="Clients\" />
     <Folder Include="WeatherImages\" />
     <Folder Include="Resources\menu\" />
+    <Folder Include="Resources\layout-land\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv4-18">

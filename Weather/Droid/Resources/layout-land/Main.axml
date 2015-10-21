@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="#E2E2E2"
     android:id="@+id/sample_main_layout"
-    android:orientation="vertical">
-<!--    android:orientation="vertical"-->
+    android:orientation="horizontal">
+<!--    android:orientation="horizontal"-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

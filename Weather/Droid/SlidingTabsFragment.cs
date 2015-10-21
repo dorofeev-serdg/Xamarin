@@ -83,10 +83,6 @@ namespace Droid
 				var listView = view.FindViewById<ExpandableListView> (Resource.Id.myExpandableListview);
 				listView.SetAdapter (new ExpandableDataAdapter (CurrentWeather[position]));
 
-//				TextView txtTitle = view.FindViewById<TextView> (Resource.Id.item_title);
-//				int pos = position + 1;
-//				txtTitle.Text = pos.ToString ();
-
 				return view;
 			}
 

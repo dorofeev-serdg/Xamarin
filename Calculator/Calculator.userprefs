@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Calculator\Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Xamarin_Android_API_21" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Calculator\MainActivity.cs">
     <Files>
-      <File FileName="Calculator\Resources\values\dimens.xml" Line="8" Column="1" />
+      <File FileName="Calculator\MainActivity.cs" Line="15" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

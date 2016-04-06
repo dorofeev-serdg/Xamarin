@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid", "Droid\Droid.csproj", "{471A20CC-2034-4756-9509-8E8AB97E5B75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid.UITests", "Droid.UITests\Droid.UITests.csproj", "{7A8C712F-2480-48AE-94A6-502E7AD6B6ED}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Weather", "Weather\Weather.shproj", "{18BE7D5F-2575-405B-89DC-B9107DDEB609}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{471A20CC-2034-4756-9509-8E8AB97E5B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471A20CC-2034-4756-9509-8E8AB97E5B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471A20CC-2034-4756-9509-8E8AB97E5B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471A20CC-2034-4756-9509-8E8AB97E5B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8C712F-2480-48AE-94A6-502E7AD6B6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8C712F-2480-48AE-94A6-502E7AD6B6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8C712F-2480-48AE-94A6-502E7AD6B6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8C712F-2480-48AE-94A6-502E7AD6B6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
